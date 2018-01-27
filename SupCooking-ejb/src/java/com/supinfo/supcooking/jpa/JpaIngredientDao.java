@@ -2,7 +2,6 @@ package com.supinfo.supcooking.jpa;
 
 import javax.ejb.Stateless;
 import com.supinfo.supcooking.dao.IngredientDao;
-import com.supinfo.supcooking.entities.Category;
 import com.supinfo.supcooking.entities.Ingredient;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -39,6 +38,6 @@ public class JpaIngredientDao implements IngredientDao {
     public void removeIngredient(Ingredient ingredient) {
         em.remove(ingredient);
     }
-
+    
     
 }

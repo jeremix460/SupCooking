@@ -9,7 +9,7 @@ import javax.persistence.PersistenceContext;
 
 @Stateless
 public class JpaCategoryDao implements CategoryDao {
-
+    
     @PersistenceContext(unitName = "SupCooking-ejbPU")
     private EntityManager em;
     
@@ -38,5 +38,4 @@ public class JpaCategoryDao implements CategoryDao {
     public void removeCategory(Category category) {
         em.remove(category);
     }
-
 }

@@ -2,7 +2,6 @@ package com.supinfo.supcooking.jpa;
 
 import javax.ejb.Stateless;
 import com.supinfo.supcooking.dao.RecipeDao;
-import com.supinfo.supcooking.entities.Ingredient;
 import com.supinfo.supcooking.entities.Recipe;
 import java.util.List;
 import javax.persistence.EntityManager;
