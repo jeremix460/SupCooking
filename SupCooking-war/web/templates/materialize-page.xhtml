@@ -3,17 +3,54 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets">
-
+    
     <h:head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <title><ui:insert name="title" /></title>
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"></link>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css"></link>
+        <h:outputStylesheet library="css" name="supcooking.css" />
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
     </h:head>
-
-    <h:body class="container">
-        <ui:insert name="content" />
+        
+    <h:body>
+        <nav>
+            <div class="nav-wrapper container">
+                <h:link outcome="/faces/index" value="SupCooking" styleClass="brand-logo center" />
+                <ul class="left hide-on-med-and-down">
+                    <!--TODO: add navigation links here-->
+                </ul>
+                <ul class="right hide-on-med-and-down">
+                    <li><h:link outcome="/faces/login" value="Login" /></li>
+                </ul>
+            </div>
+        </nav>
+            
+        <main class="container">
+            <ui:insert name="content" />
+        </main>
+            
+        <footer class="page-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col l6 s12">
+                        <h5 class="white-text">SuppCooking</h5>
+                        <p class="grey-text text-lighten-4">Share delicious recipes with gourmets all arround the world!</p>
+                    </div>
+                    <div class="col l4 offset-l2 s12">
+                        <h5 class="white-text">Links</h5>
+                        <ul>
+                            <!--TODO: add quick access links here-->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <div class="container">
+                    © 2018 SUPINFO International University
+                </div>
+            </div>
+        </footer>
     </h:body>
 </html>
