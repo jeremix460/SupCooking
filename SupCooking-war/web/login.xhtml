@@ -9,14 +9,14 @@
     </ui:define>
     
     <ui:define name="content">
-        <h:form>
+        <h:form styleClass="container">
             <h:outputLabel for="username" value="Username :"/>
             <h:inputText id="username" value="#{userController.username}" />
             <br/><br/>
             <h:outputLabel for="password" value="Password :"/>
             <h:inputSecret id="password" value="#{userController.password}" />
             <br/><br/>
-            <h:commandButton value="Login" action="#{userController.login()}" />
+            <h:commandButton value="Login" action="#{userController.login()}" styleClass="waves-effect waves-light btn" />
         </h:form>
     </ui:define>
 </ui:composition>
