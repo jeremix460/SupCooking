@@ -1,0 +1,58 @@
+# Created by https://www.gitignore.io/api/java,netbeans,java-web
+
+### Java ###
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+# BlueJ files
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
+### Java-Web ###
+## ignoring target file
+target/
+
+### NetBeans ###
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+nbactions.xml
+
+# End of https://www.gitignore.io/api/netbeans
+
+*.DS_Store
+
+SupCooking-war/nbproject/private/
+SupCooking-war/build/
+SupCooking-war/nbbuild/
+SupCooking-war/dist/
+SupCooking-war/nbdist/
+SupCooking-war/.nb-gradle/
+SupCooking-war/nbactions.xml
+
+SupCooking-ejb/nbproject/private/
+SupCooking-ejb/build/
+SupCooking-ejb/nbbuild/
+SupCooking-ejb/dist/
+SupCooking-ejb/nbdist/
+SupCooking-ejb/.nb-gradle/
+SupCooking-ejb/nbactions.xml
