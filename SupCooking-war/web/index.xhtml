@@ -3,12 +3,70 @@
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 template="templates/materialize-page.xhtml">
-
+    
     <ui:define name="title">
         <h:outputText value="Index"/>
     </ui:define>
     
     <ui:define name="content">
-        <h1>I'm a Materialized title !</h1>
+        <div id="index-banner" class="parallax-container">
+            <div class="section no-pad-bot">
+                <div class="container">
+                    <h1 class="header center">SupCooking</h1>
+                    <div class="row center">
+                        <h5 class="header col s12 light">Share delicious recipes with gournmets worldwide with SupCooking.</h5>
+                    </div>
+                    <div class="row center">
+                        <h:link outcome="/publish" value="Publish a recipe" styleClass="btn-large waves-effect waves-light" />
+                    </div>
+                </div>
+            </div>
+            <div class="parallax">
+                <img src="https://source.unsplash.com/1920x1080/?food"></img>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="row">
+                <div class="col s12 m6 l3">
+                    <div class="icon-block">
+                        <h2 class="center light-blue-text"><i class="material-icons">people</i></h2>
+                        <h5 class="center">Contributors</h5>
+                        
+                        <p class="light"><h:outputText value="165978" style="font-weight:bold"/> gourmets share recipes with you.</p>
+                    </div>
+                </div>
+                <div class="col s12 m6 l3">
+                    <div class="icon-block">
+                        <h2 class="center light-blue-text"><i class="material-icons">cake</i></h2>
+                        <h5 class="center">Recipes</h5>
+                        
+                        <p class="light">We host not less than <h:outputText value="9465" style="font-weight:bold"/> recipes.</p>
+                    </div>
+                </div>
+                <div class="col s12 m6 l3">
+                    <div class="icon-block">
+                        <h2 class="center light-blue-text"><i class="material-icons">mood</i></h2>
+                        <h5 class="center">Delicious</h5>
+                        
+                        <p class="light"><h:outputText value="165978" style="font-weight:bold"/> gourmets share recipes with SupCooking.</p>
+                    </div>
+                </div>
+                <div class="col s12 m6 l3">
+                    <div class="icon-block">
+                        <h2 class="center light-blue-text"><i class="material-icons">mood_bad</i></h2>
+                        <h5 class="center">So so</h5>
+                        
+                        <p class="light">It seems that <h:outputText value="1364" style="font-weight:bold"/> people thought a recipe didn't match their taste.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <script>
+            $(document).ready(function(){
+                $('.parallax').parallax();
+            });
+        </script>
     </ui:define>
 </ui:composition>
