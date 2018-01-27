@@ -1,18 +1,18 @@
 package com.supinfo.supcooking.controllers;
 
 import com.supinfo.supcooking.entities.User;
-import com.supinfo.supcooking.services.UserServiceInterface;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import org.hibernate.validator.constraints.NotEmpty;
+import com.supinfo.supcooking.services.interfaces.IUserService;
 
 @ManagedBean
 @SessionScoped
 public class UserController {
     
     @EJB
-    private UserServiceInterface userService;
+    private IUserService userService;
     
     @NotEmpty
     private String username;

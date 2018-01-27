@@ -1,13 +1,14 @@
-package com.supinfo.supcooking.services;
+package com.supinfo.supcooking.services.implementations;
 
 import com.supinfo.supcooking.entities.User;
 import com.supinfo.supcooking.jpa.JpaUserDao;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.NoResultException;
+import com.supinfo.supcooking.services.interfaces.IUserService;
 
 @Stateless
-public class UserService implements UserServiceInterface {
+public class UserService implements IUserService {
     
     @EJB
     private JpaUserDao jpaUserDao;
