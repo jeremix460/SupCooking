@@ -2,6 +2,8 @@ package com.supinfo.supcooking.jpa;
 
 import javax.ejb.Stateless;
 import com.supinfo.supcooking.dao.RecipeDao;
+import com.supinfo.supcooking.entities.Category;
+import com.supinfo.supcooking.entities.Ingredient;
 import com.supinfo.supcooking.entities.Recipe;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -88,4 +90,29 @@ public class JpaRecipeDao implements RecipeDao {
         
         return dislikes;
     }
+
+    @Override
+    public Recipe createRecipe(Recipe recipe) {
+        em.persist(recipe);
+        return recipe;
+    }
+
+    @Override
+    public Recipe addIngredient(Recipe recipe, Ingredient ingredient) {
+        recipe.addIngredient(ingredient);
+        em.merge(recipe);
+        
+        return recipe;
+    }
+
+    @Override
+    public Recipe setCategory(Recipe recipe, Category category) {
+        recipe.setCategory(category);
+        em.merge(recipe);
+        
+        return recipe;
+    }
+    
+    
+    
 }

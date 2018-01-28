@@ -2,6 +2,7 @@ package com.supinfo.supcooking.jpa;
 
 import javax.ejb.Stateless;
 import com.supinfo.supcooking.dao.UserDao;
+import com.supinfo.supcooking.entities.Recipe;
 import com.supinfo.supcooking.entities.User;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -41,4 +42,12 @@ public class JpaUserDao implements UserDao {
             return null; // user not found
         }
     }
+
+    @Override
+    public Recipe addRecipe(User user, Recipe recipe) {
+        user.addRecipe(recipe);
+        em.merge(recipe);
+        return recipe;
+    }
+    
 }

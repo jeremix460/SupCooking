@@ -116,4 +116,20 @@ public class User implements Serializable {
     public String toString() {
         return "[" + id + "] " + username;
     }
+
+    public List<Recipe> getRecipes() {
+        return recipes;
+    }
+
+    public void setRecipes(List<Recipe> recipes) {
+        this.recipes = recipes;
+    }
+    
+    public void addRecipe(Recipe recipe){
+        this.recipes.add(recipe);
+    }
+    
+    public void removeRecipe(Recipe recipe){
+        this.recipes.remove(recipe);
+    }
 }

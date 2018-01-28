@@ -1,5 +1,6 @@
 package com.supinfo.supcooking.services.interfaces;
 
+import com.supinfo.supcooking.entities.Recipe;
 import com.supinfo.supcooking.entities.User;
 import java.util.List;
 import javax.ejb.Remote;
@@ -14,4 +15,8 @@ public interface IUserService {
     int getAllUsersCount();
     
     User findUserByUsernamePassword(String username, String passsword);
+        
+    Recipe addRecipe(User user, Recipe recipe);
+
+    
 }
