@@ -24,7 +24,7 @@ public class UserController implements Serializable{
         
         if(loggedInUser != null) {
             HttpSession ses = SessionUtils.getSession();
-            ses.setAttribute("username", loggedInUser);
+            ses.setAttribute(SessionUtils.ATTRIBUTE_USER, loggedInUser);
             
             return "/member/dashboard";
         } else {

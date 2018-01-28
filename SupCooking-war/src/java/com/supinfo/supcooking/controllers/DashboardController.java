@@ -20,7 +20,7 @@ public class DashboardController {
     private String postCode;
 
     public User getUser() {
-        return (User) SessionUtils.getSession().getAttribute("username");
+        return SessionUtils.getLoggedInUser();
     }
 
     public void setUser(User user) {
