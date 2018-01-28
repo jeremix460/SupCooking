@@ -33,6 +33,7 @@ public class SessionUtils {
     }
     
     public static boolean isUserLoggedIn() {
-        return getSession() != null;
+        HttpSession ses = getSession();
+        return (ses != null && ses.getAttribute("username") != null);
     }
 }
