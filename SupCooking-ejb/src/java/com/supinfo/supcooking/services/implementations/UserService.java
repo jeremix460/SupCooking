@@ -32,4 +32,6 @@ public class UserService implements IUserService {
     public User findUserByUsernamePassword(String username, String passsword) {
         return jpaUserDao.findUserByUsernamePassword(username, passsword);
     }
+    
+    
 }

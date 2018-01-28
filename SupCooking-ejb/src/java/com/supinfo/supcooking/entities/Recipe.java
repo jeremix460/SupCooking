@@ -155,6 +155,14 @@ public class Recipe implements Serializable {
     public void setIngredients(List<Ingredient> ingredients) {
         this.ingredients = ingredients;
     }
+    
+    public void addIngredient(Ingredient ingredient){
+        this.ingredients.add(ingredient);
+    }
+    
+    public void removeIngredient(Ingredient ingredient){
+        this.ingredients.remove(ingredient);
+    }
 
     public User getUser() {
         return user;
