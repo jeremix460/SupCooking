@@ -1,6 +1,7 @@
 package com.supinfo.supcooking.services.implementations;
 
 import com.supinfo.supcooking.dao.UserDao;
+import com.supinfo.supcooking.entities.Recipe;
 import com.supinfo.supcooking.entities.User;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -31,6 +32,12 @@ public class UserService implements IUserService {
     @Override
     public User findUserByUsernamePassword(String username, String passsword) {
         return jpaUserDao.findUserByUsernamePassword(username, passsword);
+    }
+
+    @Override
+    public Recipe addRecipe(User user, Recipe recipe) {
+        return jpaUserDao.addRecipe(user, recipe);
+                
     }
     
     

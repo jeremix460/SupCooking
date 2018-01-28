@@ -42,35 +42,39 @@ public class DebugService implements IDebugService{
     @Override
     public void seedDatabase() {
         
-        User newUser = new User();
-        newUser.setUsername(generateRandomString(10));
-        newUser.setPassword(generateRandomString(20));
-        newUser.setFirstName(generateRandomString(8));
-        newUser.setLastName(generateRandomString(12));
-        newUser.setEmail(generateRandomString(25));
-        newUser.setPostCode(generateRandomString(5));
-        userService.createUser(newUser);
-        
-        //Create a category
-        Category category = categoryService.createCategory(generateRandomString(8));
-        
-        //Create ingredients 
-        Ingredient ingredient_A = ingredientService.createIngredient(generateRandomString(8), generateRandomInteger(500));
-        Ingredient ingredient_B = ingredientService.createIngredient(generateRandomString(8), generateRandomInteger(500));
-        Ingredient ingredient_C = ingredientService.createIngredient(generateRandomString(8), generateRandomInteger(500));
+        for(int i = 0; i < 50; i++){
+            
+//            User newUser = new User();
+//            newUser.setUsername(generateRandomString(10));
+//            newUser.setPassword(generateRandomString(20));
+//            newUser.setFirstName(generateRandomString(8));
+//            newUser.setLastName(generateRandomString(12));
+//            newUser.setEmail(generateRandomString(25));
+//            newUser.setPostCode(generateRandomString(5));
+//            userService.createUser(newUser);
 
-        //Create a recipe
-        Recipe recipe = recipeService.createRecipe(generateRandomString(30), generateRandomString(500), generateRandomString(20), ThreadLocalRandom.current().nextLong(500000) , ThreadLocalRandom.current().nextLong(200000), generateRandomInteger(6), generateRandomInteger(500), generateRandomInteger(500));
+            //Create a category
+            Category category = categoryService.createCategory(generateRandomString(8));
+//
+            //Create ingredients 
+            Ingredient ingredient_A = ingredientService.createIngredient(generateRandomString(8), ThreadLocalRandom.current().nextFloat());
+            Ingredient ingredient_B = ingredientService.createIngredient(generateRandomString(8), ThreadLocalRandom.current().nextFloat());
+            Ingredient ingredient_C = ingredientService.createIngredient(generateRandomString(8), ThreadLocalRandom.current().nextFloat());
+
+            //Create a recipe
+            Recipe recipe = recipeService.createRecipe(generateRandomString(30), generateRandomString(500), generateRandomString(20), ThreadLocalRandom.current().nextLong(500000) , ThreadLocalRandom.current().nextLong(200000), generateRandomInteger(6), generateRandomInteger(500), generateRandomInteger(500));
+//
+//            //Add the ingredients 
+//            recipeService.addIngredient(recipe, ingredient_A);
+//            recipeService.addIngredient(recipe, ingredient_B);
+//            recipeService.addIngredient(recipe, ingredient_C);
+//
+//            //Define the category
+//            recipeService.setCategory(recipe, category);
+//
+//            userService.addRecipe(newUser, recipe);
+        }
         
-        //Add the ingredients 
-        recipeService.addIngredient(recipe, ingredient_A);
-        recipeService.addIngredient(recipe, ingredient_B);
-        recipeService.addIngredient(recipe, ingredient_C);
-        
-        //Define the category
-        recipeService.setCategory(recipe, category);
-           
-        userService.addRecipe(newUser, recipe);
     }
    
 

@@ -13,6 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
@@ -27,27 +28,27 @@ public class Recipe implements Serializable {
     @Column(name = "id")
     private Long id;
     
-    @NotEmpty
+    @NotNull
     @Column(name = "title")
     private String title;
     
-    @NotEmpty
+    @NotNull
     @Column(name = "description")
     private String description;
     
-    @NotEmpty
+    @NotNull
     @Column(name = "picture")
     private String picture;
     
-    @NotEmpty
+    @NotNull
     @Column(name = "preparation_time")
     private Long preparationTime;
     
-    @NotEmpty
+    @NotNull
     @Column(name = "cooking_time")
     private Long cookingTime;
     
-    @NotEmpty
+    @NotNull
     @Column(name = "difficulty")
     private int difficulty;
     
