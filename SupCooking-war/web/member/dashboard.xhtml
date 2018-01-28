@@ -7,12 +7,61 @@
     <ui:define name="title">
         <h:outputText value="Dashboard"/>
     </ui:define>
-    
+        
     <ui:define name="content">
-        <div>
-            <p>
-                Hi <h:outputText value="#{userController.loggedInUser.username}" /> !
-            </p>
+        <div class="container">
+            <h1>Personnal information</h1>
+            <table>
+                <tbody>
+                    <tr>
+                        <th>Username</th>
+                        <td><h:outputText value="#{dashboardController.user.username}" /></td>
+                    </tr>
+                    <tr>
+                        <th>Password</th>
+                        <td><h:outputText value="#{dashboardController.user.password}" /></td>
+                    </tr>
+                    <tr>
+                        <th>First name</th>
+                        <td><h:outputText value="#{dashboardController.user.firstName}" /></td>
+                    </tr>
+                    <tr>
+                        <th>Last name</th>
+                        <td><h:outputText value="#{dashboardController.user.lastName}" /></td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td><h:outputText value="#{dashboardController.user.email}" /></td>
+                    </tr>
+                    <tr>
+                        <th>Post code</th>
+                        <td><h:outputText value="#{dashboardController.user.postCode}" /></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h1>About my recipes</h1>
+            <div class="row">
+                <div class="col s12 m6 offset-m3">
+                    <canvas id="pie-chart"></canvas>
+                </div>
+            </div>
+            <script>
+                new Chart(document.getElementById("pie-chart"), {
+                    type: 'pie',
+                    data: {
+                        labels: ["Likes", "Dislikes"],
+                        datasets: [
+                            {
+                                label: "Ratio likes/dislikes",
+                                backgroundColor: ["#4CAF50", "#F44336"],
+                                data: [4,1]
+                            }
+                        ]
+                    },
+                    options: {}
+                });
+            </script>
         </div>
     </ui:define>
 </ui:composition>

@@ -19,7 +19,7 @@
                         <h5 class="header col s12 light">Share delicious recipes with gournmets worldwide with SupCooking.</h5>
                     </div>
                     <div class="row center">
-                        <h:link outcome="/publish" value="Publish a recipe" styleClass="btn-large waves-effect waves-light" />
+                        <h:link outcome="/publish" value="Publish a recipe" styleClass="btn-large waves-effect waves-light" rendered="#{userController.userLoggedIn}" />
                     </div>
                 </div>
             </div>
