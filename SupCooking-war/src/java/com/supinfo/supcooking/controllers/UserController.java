@@ -1,15 +1,18 @@
 package com.supinfo.supcooking.controllers;
 
 import com.supinfo.supcooking.entities.User;
+import com.supinfo.supcooking.services.interfaces.IUserService;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import com.supinfo.supcooking.utils.SessionUtils;
 import java.io.Serializable;
+import javax.ejb.EJB;
 import javax.servlet.http.HttpSession;
 
 @ManagedBean
 @SessionScoped
 public class UserController implements Serializable{
+    @EJB IUserService userService;
     private String username;
     private String password;
     private User loggedInUser;
@@ -50,5 +53,9 @@ public class UserController implements Serializable{
     
     public User getLoggedInUser() {
         return loggedInUser;
+    }
+    
+    public int getAllusersCount() {
+        return userService.getAllUsersCount();
     }
 }

@@ -1,25 +1,25 @@
 package com.supinfo.supcooking.services.implementations;
 
+import com.supinfo.supcooking.dao.UserDao;
 import com.supinfo.supcooking.entities.User;
-import com.supinfo.supcooking.jpa.JpaUserDao;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.persistence.NoResultException;
 import com.supinfo.supcooking.services.interfaces.IUserService;
+import java.util.List;
 
 @Stateless
 public class UserService implements IUserService {
     
     @EJB
-    private JpaUserDao jpaUserDao;
+    private UserDao jpaUserDao;
     
     @Override
-    public User login(String username, String password){
-        try {
-            //TODO: getch an actual user with username/pw !
-            return jpaUserDao.findUserById(0L);
-        } catch (NoResultException e) {
-            return null; // user not exist
-        }
+    public List<User> getAllUsers() {
+        return jpaUserDao.getAllUsers();
+    }
+    
+    @Override
+    public int getAllUsersCount() {
+        return jpaUserDao.getAllUsersCount();
     }
 }

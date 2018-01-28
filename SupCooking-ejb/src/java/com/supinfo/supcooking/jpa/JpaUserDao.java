@@ -14,28 +14,12 @@ public class JpaUserDao implements UserDao {
     private EntityManager em;
     
     @Override
-    public User addUser(User user) {
-        em.persist(user);
-        return user;
-    }
-    
-    @Override
     public List<User> getAllUsers() {
-        return em.createQuery("SELECT t FROM users t").getResultList();
+        return em.createNamedQuery("allUsers").getResultList();
     }
-    
+
     @Override
-    public User findUserById(Long userId) {
-        return em.find(User.class, userId);
-    }
-    
-    @Override
-    public User updateUser(User user) {
-        return em.merge(user);
-    }
-    
-    @Override
-    public void removeUser(User user) {
-        em.remove(user);
+    public int getAllUsersCount() {
+        return this.getAllUsers().size();
     }
 }
