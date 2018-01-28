@@ -6,7 +6,7 @@ import javax.ejb.Remote;
 @Remote
 public interface IIngredientService {
     
-    Ingredient addIngredient(Ingredient ingredient);
+    Ingredient createIngredient(String designation, float quantity);
     
-    void removeIngredient(Ingredient ingredient);
+    void deleteIngredient(Ingredient ingredient);
 }
