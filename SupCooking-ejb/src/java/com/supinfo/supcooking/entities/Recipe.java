@@ -2,6 +2,7 @@ package com.supinfo.supcooking.entities;
 
 import java.io.Serializable;
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -45,11 +46,41 @@ public class Recipe implements Serializable {
     @Column(name = "difficulty")
     private short difficulty;
     
+    @Column(name = "likeMark")
+    private int like;
+    
+    @Column(name = "dislikeMark")
+    private int dislike;
+
+    public int getLike() {
+        return like;
+    }
+
+    public void setLike() {
+        this.like++;
+    }
+
+    public int getDislike() {
+        return dislike;
+    }
+
+    public void setDislike() {
+        this.dislike++;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+    
     @OneToOne
     @PrimaryKeyJoinColumn(name="category_id", referencedColumnName="ID")
     private Category category;
     
-    @OneToMany(targetEntity = Ingredient.class)
+    @OneToMany
     private List<Ingredient> ingredients;
     
     @ManyToOne
@@ -63,13 +94,17 @@ public class Recipe implements Serializable {
     public void setCategory(Category category) {
         this.category = category;
     }
-    
+
     public List<Ingredient> getIngredients() {
         return ingredients;
     }
+
+    public void addIngredient(Ingredient ingredient) {
+        this.ingredients.add(ingredient);
+    }
     
-    public void setIngredients(List<Ingredient> ingredients) {
-        this.ingredients = ingredients;
+    public void removeIngredient(Ingredient ingredient) {
+        this.ingredients.remove(ingredient);
     }
     
     public String getDescription() {
@@ -112,8 +147,6 @@ public class Recipe implements Serializable {
         this.difficulty = difficulty;
     }
     
-    
-    
     public Long getId() {
         return id;
     }
@@ -142,6 +175,18 @@ public class Recipe implements Serializable {
     @Override
     public String toString() {
         return "com.supinfo.supcooking.entity.Recipe[ id=" + id + " ]";
+    }
+    
+    public int likeRecipe(){
+        
+        this.setLike();
+        return this.like;
+    }
+    
+    public int dislikeRecipe(){
+        
+        this.setDislike();
+        return this.dislike;
     }
     
 }

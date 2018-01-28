@@ -13,13 +13,17 @@ public class IngredientService implements IIngredientService {
     private IngredientDao ingredientDao;
     
     @Override
-    public Ingredient addIngredient(Ingredient ingredient) {
+    public Ingredient createIngredient(String designation, float quantity) {
 
+        Ingredient ingredient = new Ingredient();
+        ingredient.setDesignation(designation);
+        ingredient.setQuantity(quantity);
+        
         return ingredientDao.addIngredient(ingredient);
     }
 
     @Override
-    public void removeIngredient(Ingredient ingredient) {
+    public void deleteIngredient(Ingredient ingredient) {
         ingredientDao.removeIngredient(ingredient);
     }
     
