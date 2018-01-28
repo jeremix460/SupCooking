@@ -31,11 +31,8 @@ public class AuthorizationFilter implements Filter{
             HttpSession ses = req.getSession(false);
             String reqURI = req.getRequestURI();
             
-            // whitelist other pages by adding an OR condition here
-            if(reqURI.contains("/index.xhtml")
-                    || reqURI.contains("/login.xhtml")
-                    || reqURI.contains("/register.xhtml")
-                    || (ses != null && ses.getAttribute("username") != null)
+            if((ses != null && ses.getAttribute("username") != null)
+                    || !reqURI.contains("/member")
                     || reqURI.contains("javax.faces.resource")) {
                 chain.doFilter(req, res);
             } else {
