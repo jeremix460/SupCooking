@@ -24,6 +24,16 @@ public class RecipeService implements IRecipeService {
     }
 
     @Override
+    public List<Recipe> findRecipesByKeywords(String keywords, int page) {
+        return recipeDao.findRecipesByKeywords(keywords, page);
+    }
+
+    @Override
+    public int findRecipesByKeywordsPagesCount(String keywords) {
+        return recipeDao.findRecipesByKeywordsPagesCount(keywords);
+    }
+
+    @Override
     public int getAllLikes() {
         return recipeDao.getAllLikes();
     }

@@ -11,6 +11,10 @@ public interface RecipeDao {
     
     int getAllRecipesCount();
     
+    List<Recipe> findRecipesByKeywords(String keywords, int page);
+    
+    int findRecipesByKeywordsPagesCount(String keywords);
+    
     int getAllLikes();
     
     int getAllDislikes();

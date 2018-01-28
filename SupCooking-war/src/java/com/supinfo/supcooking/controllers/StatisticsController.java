@@ -1,23 +1,16 @@
 package com.supinfo.supcooking.controllers;
 
-import com.supinfo.supcooking.entities.Recipe;
 import com.supinfo.supcooking.services.interfaces.IRecipeService;
-import java.io.Serializable;
-import java.util.List;
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.ejb.EJB;
 
 @ManagedBean
 @SessionScoped
-public class RecipeController implements Serializable{
+public class StatisticsController {
     @EJB IRecipeService recipeService;
     
-    public List<Recipe> getAllRecipes() {
-        return recipeService.getAllRecipes();
-    }
-    
-    public int getAllRecipesCount() {
+    public int getAllRecipesCounts() {
         return recipeService.getAllRecipesCount();
     }
     

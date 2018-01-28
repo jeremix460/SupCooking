@@ -2,14 +2,15 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
-                template="templates/materialize-page.xhtml">
+                template="templates/materialize-page.xhtml"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     
     <ui:define name="title">
         <h:outputText value="Index"/>
     </ui:define>
     
     <ui:define name="content">
-        
+        <!--intro-->
         <div id="index-banner" class="parallax-container">
             <div class="section no-pad-bot">
                 <div class="container">
@@ -27,48 +28,68 @@
             </div>
         </div>
         
-        <nav>
-            <div class="nav-wrapper">
-                <form>
-                    <div class="input-field">
-                        <input id="search" type="search">
-                            <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-                            <i class="material-icons">close</i>
-                        </input>
+        <!--search bar-->
+        <div class="row container">
+            <h:form onsubmit="#{indexController.search()}" styleClass="col s12">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">search</i>
+                        <h:outputLabel for="search" value="Type in keywords then press enter"/>
+                        <h:inputText id="search" value="#{indexController.keywords}" />
                     </div>
-                </form>
-            </div>
-        </nav>
+                </div>
+            </h:form>
+        </div>
         
-        <div class="section container">
-            <div class="row">
-                <ui:repeat value="#{recipeController.allRecipes}" var="recipe">
-                    <div class="col s12 m6 l4">
-                        <div class="card">
-                            <div class="card-image">
-                                <img src="https://source.unsplash.com/256x256/?cook"></img>
-                                <span class="card-title"><h:outputText value="#{recipe.title}" /></span>
-                                <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">restaurant</i></a>
-                            </div>
-                            <div class="card-content">
-                                <p><h:outputText value="#{recipe.description}" /></p>
-                            </div>
+        <!--search results-->
+        <div class="row container">
+            <ui:repeat value="#{indexController.searchResults}" var="recipe">
+                <div class="col s12 m6 l3">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://source.unsplash.com/256x256/?cook"></img>
+                            <span class="card-title"><h:outputText value="#{recipe.title}" /></span>
+                            <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">restaurant</i></a>
+                        </div>
+                        <div class="card-content">
+                            <p><h:outputText value="#{recipe.description}" /></p>
                         </div>
                     </div>
-                </ui:repeat>
-            </div>
-            
-            <ul class="pagination center-align">
-                <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-                <li class="active"><a href="#!">1</a></li>
-                <li class="waves-effect"><a href="#!">2</a></li>
-                <li class="waves-effect"><a href="#!">3</a></li>
-                <li class="waves-effect"><a href="#!">4</a></li>
-                <li class="waves-effect"><a href="#!">5</a></li>
-                <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
-            </ul>
-        </div>     
+                </div>
+            </ui:repeat>
+        </div>
         
+        <!--pagination-->
+        <div class="row container">
+            <ul class="pagination center-align">
+                <c:if test="${indexController.pagesCount gt 0}">
+                    <li class="waves-effect">
+                        <h:form>
+                            <h:commandLink action="#{indexController.paginatePrevious()}">
+                                <i class="material-icons">chevron_left</i>
+                            </h:commandLink>
+                        </h:form>
+                    </li>
+                    <c:forEach begin="1" end="${indexController.pagesCount}" var="page" varStatus="i">
+                        <li class="waves-effect">
+                            <h:form>
+                                <h:commandLink value="#{page}" action="#{indexController.paginateTo(i.index - 1)}" />
+                            </h:form>
+                        </li>
+                    </c:forEach>
+                    <li class="waves-effect">
+                        
+                        <h:form>
+                            <h:commandLink action="#{indexController.paginateNext()}">
+                                <i class="material-icons">chevron_right</i>
+                            </h:commandLink>
+                        </h:form>
+                    </li>
+                </c:if>
+            </ul>
+        </div>
+        
+        <!--statistics-->
         <div class="section container">
             <div class="row">
                 <div class="col s12 m6 l3">
@@ -84,7 +105,7 @@
                         <h2 class="center light-blue-text"><i class="material-icons">cake</i></h2>
                         <h5 class="center">Recipes</h5>
                         
-                        <p class="light">We host not less than <h:outputText value="#{recipeController.allRecipesCount}" style="font-weight:bold"/> recipes.</p>
+                        <p class="light">We host not less than <h:outputText value="#{statisticsController.allRecipesCounts}" style="font-weight:bold"/> recipes.</p>
                     </div>
                 </div>
                 <div class="col s12 m6 l3">
@@ -92,7 +113,7 @@
                         <h2 class="center light-blue-text"><i class="material-icons">mood</i></h2>
                         <h5 class="center">Delicious</h5>
                         
-                        <p class="light">At least <h:outputText value="#{recipeController.allLikes}" style="font-weight:bold"/> tounges were satisfied by a recipe.</p>
+                        <p class="light">At least <h:outputText value="#{statisticsController.allLikes}" style="font-weight:bold"/> tounges were satisfied by a recipe.</p>
                     </div>
                 </div>
                 <div class="col s12 m6 l3">
@@ -100,7 +121,7 @@
                         <h2 class="center light-blue-text"><i class="material-icons">mood_bad</i></h2>
                         <h5 class="center">So so</h5>
                         
-                        <p class="light">It seems that <h:outputText value="#{recipeController.allDislikes}" style="font-weight:bold"/> stomachs thought a recipe didn't match their taste.</p>
+                        <p class="light">It seems that <h:outputText value="#{statisticsController.allDislikes}" style="font-weight:bold"/> stomachs thought a recipe didn't match their taste.</p>
                     </div>
                 </div>
             </div>
