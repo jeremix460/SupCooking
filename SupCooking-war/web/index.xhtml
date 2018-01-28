@@ -71,11 +71,21 @@
                         </h:form>
                     </li>
                     <c:forEach begin="1" end="${indexController.pagesCount}" var="page" varStatus="i">
-                        <li class="waves-effect">
-                            <h:form>
-                                <h:commandLink value="#{page}" action="#{indexController.paginateTo(i.index - 1)}" />
-                            </h:form>
-                        </li>
+                        <!--TODO: render active class for li with condition-->
+                        <c:if test="#{i.index - 1 == indexController.currentPage}">
+                            <li class="waves-effect active">
+                                <h:form>
+                                    <h:commandLink value="#{page}" action="#{indexController.paginateTo(i.index - 1)}" />
+                                </h:form>
+                            </li>
+                        </c:if>
+                        <c:if test="#{i.index - 1 != indexController.currentPage}">
+                            <li class="waves-effect">
+                                <h:form>
+                                    <h:commandLink value="#{page}" action="#{indexController.paginateTo(i.index - 1)}" />
+                                </h:form>
+                            </li>
+                        </c:if>
                     </c:forEach>
                     <li class="waves-effect">
                         
