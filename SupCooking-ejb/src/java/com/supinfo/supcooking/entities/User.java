@@ -10,43 +10,46 @@ import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
-@Table(name="users")
+@Table(name="users", uniqueConstraints = {
+    @UniqueConstraint(columnNames = {"username", "email"})
+})
 @NamedQuery(name = "allUsers", query = "SELECT u FROM User u")
 public class User implements Serializable {
     
     private static final long serialVersionUID = 1L;
     
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
     
-    @NotEmpty
+    @NotNull
     @Column(name = "username")
     private String username;
     
-    @NotEmpty
+    @NotNull
     @Column(name = "password")
     private String password;
     
-    @NotEmpty
+    @NotNull
     @Column(name = "first_name")
     private String firstName;
     
-    @NotEmpty
+    @NotNull
     @Column(name = "last_name")
     private String lastName;
     
-    @NotEmpty
+    @NotNull
     @Email
     @Column(name = "email")
     private String email;
     
-    @NotEmpty
+    @NotNull
     @Column(name = "post_code")
     private String postCode;
     

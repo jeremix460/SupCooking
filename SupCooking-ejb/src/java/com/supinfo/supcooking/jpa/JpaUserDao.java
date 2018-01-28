@@ -15,6 +15,12 @@ public class JpaUserDao implements UserDao {
     private EntityManager em;
     
     @Override
+    public User createUser(User user) {
+        em.persist(user);
+        return user;
+    }
+    
+    @Override
     public List<User> getAllUsers() {
         return em.createNamedQuery("allUsers").getResultList();
     }

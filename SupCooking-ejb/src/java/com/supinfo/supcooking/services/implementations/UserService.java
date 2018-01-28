@@ -12,6 +12,11 @@ public class UserService implements IUserService {
     
     @EJB
     private UserDao jpaUserDao;
+
+    @Override
+    public User createUser(User user) {
+        return jpaUserDao.createUser(user);
+    }
     
     @Override
     public List<User> getAllUsers() {

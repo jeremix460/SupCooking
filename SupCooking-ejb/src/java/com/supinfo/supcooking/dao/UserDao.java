@@ -7,6 +7,8 @@ import com.supinfo.supcooking.entities.User;
 @Local
 public interface UserDao {
     
+    User createUser(User user);
+    
     List<User> getAllUsers();
     
     int getAllUsersCount();

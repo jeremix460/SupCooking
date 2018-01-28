@@ -27,6 +27,7 @@
                         <li><h:form><h:commandLink action="#{userController.logout}" value="Logout" /></h:form></li>
                     </c:if>
                     <c:if test="#{!userController.userLoggedIn}">
+                        <li><h:link outcome="/register" value="Register" /></li>
                         <li><h:link outcome="/login" value="Login" /></li>
                     </c:if>
                 </ul>
