@@ -22,6 +22,7 @@ public class User implements Serializable {
     
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
+    @Column(name = "id")
     private Long id;
     
     @NotEmpty
@@ -110,6 +111,6 @@ public class User implements Serializable {
     
     @Override
     public String toString() {
-        return "User id:" + id;
+        return "[" + id + "] " + username;
     }
 }
