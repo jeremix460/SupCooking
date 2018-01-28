@@ -34,11 +34,11 @@ public class User implements Serializable {
     private String password;
     
     @NotEmpty
-    @Column(name = "firstName")
+    @Column(name = "first_name")
     private String firstName;
     
     @NotEmpty
-    @Column(name = "lastName")
+    @Column(name = "last_name")
     private String lastName;
     
     @NotEmpty
@@ -47,7 +47,7 @@ public class User implements Serializable {
     private String email;
     
     @NotEmpty
-    @Column(name = "postCode")
+    @Column(name = "post_code")
     private String postCode;
     
     @OneToMany(targetEntity = Recipe.class)

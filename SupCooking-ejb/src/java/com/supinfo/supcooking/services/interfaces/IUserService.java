@@ -10,4 +10,6 @@ public interface IUserService {
     List<User> getAllUsers();
     
     int getAllUsersCount();
+    
+    User findUserByUsernamePassword(String username, String passsword);
 }

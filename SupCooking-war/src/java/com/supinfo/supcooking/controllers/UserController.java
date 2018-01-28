@@ -7,6 +7,8 @@ import javax.faces.bean.SessionScoped;
 import com.supinfo.supcooking.utils.SessionUtils;
 import java.io.Serializable;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
 @ManagedBean
@@ -18,29 +20,26 @@ public class UserController implements Serializable{
     private User loggedInUser;
     
     public String login() {
-        //TODO: verify user in DB and use the result as the logged in user
-        loggedInUser = new User();
-        loggedInUser.setUsername(username);
-        loggedInUser.setPassword(password);
+        loggedInUser = userService.findUserByUsernamePassword(username, password);
         
-        HttpSession ses = SessionUtils.getSession();
-        ses.setAttribute("username", loggedInUser);
-        
-        return "/member/dashboard";
+        if(loggedInUser != null) {
+            HttpSession ses = SessionUtils.getSession();
+            ses.setAttribute("username", loggedInUser);
+            
+            return "/member/dashboard";
+        } else {
+            FacesContext.getCurrentInstance()
+                    .addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,
+							"Incorrect Username and Passowrd",
+							"Please enter correct username and Password"));
+            return "/login";
+        }
     }
     
     public String logout() {
         HttpSession session = SessionUtils.getSession();
         session.invalidate();
         return "/index";
-    }
-    
-    public String getPassword() {
-        return password;
-    }
-    
-    public void setPassword(String password) {
-        this.password = password;
     }
     
     public String getUsername() {
@@ -51,8 +50,24 @@ public class UserController implements Serializable{
         this.username = username;
     }
     
+    public String getPassword() {
+        return password;
+    }
+    
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    
     public User getLoggedInUser() {
         return loggedInUser;
+    }
+    
+    public void setLoggedInUser(User loggedInUser) {
+        this.loggedInUser = loggedInUser;
+    }
+    
+    public boolean isUserLoggedIn() {
+        return SessionUtils.isUserLoggedIn();
     }
     
     public int getAllusersCount() {

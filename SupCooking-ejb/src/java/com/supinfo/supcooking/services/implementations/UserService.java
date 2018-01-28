@@ -22,4 +22,9 @@ public class UserService implements IUserService {
     public int getAllUsersCount() {
         return jpaUserDao.getAllUsersCount();
     }
+
+    @Override
+    public User findUserByUsernamePassword(String username, String passsword) {
+        return jpaUserDao.findUserByUsernamePassword(username, passsword);
+    }
 }
