@@ -94,7 +94,7 @@
                         <h2 class="center light-blue-text"><i class="material-icons">cake</i></h2>
                         <h5 class="center">Recipes</h5>
                         
-                        <p class="light">We host not less than <h:outputText value="#{recipeController.randomNumber}" style="font-weight:bold"/> recipes.</p>
+                        <p class="light">We host not less than <h:outputText value="#{recipeController.allRecipesCount}" style="font-weight:bold"/> recipes.</p>
                     </div>
                 </div>
                 <div class="col s12 m6 l3">
@@ -102,7 +102,7 @@
                         <h2 class="center light-blue-text"><i class="material-icons">mood</i></h2>
                         <h5 class="center">Delicious</h5>
                         
-                        <p class="light">At least <h:outputText value="#{recipeController.randomNumber}" style="font-weight:bold"/> tounges were satisfied by a recipe.</p>
+                        <p class="light">At least <h:outputText value="#{recipeController.allLikes}" style="font-weight:bold"/> tounges were satisfied by a recipe.</p>
                     </div>
                 </div>
                 <div class="col s12 m6 l3">
@@ -110,7 +110,7 @@
                         <h2 class="center light-blue-text"><i class="material-icons">mood_bad</i></h2>
                         <h5 class="center">So so</h5>
                         
-                        <p class="light">It seems that <h:outputText value="#{recipeController.randomNumber}" style="font-weight:bold"/> stomachs thought a recipe didn't match their taste.</p>
+                        <p class="light">It seems that <h:outputText value="#{recipeController.allDislikes}" style="font-weight:bold"/> stomachs thought a recipe didn't match their taste.</p>
                     </div>
                 </div>
             </div>

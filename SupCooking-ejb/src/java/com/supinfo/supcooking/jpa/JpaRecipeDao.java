@@ -14,28 +14,36 @@ public class JpaRecipeDao implements RecipeDao {
     private EntityManager em;
     
     @Override
-    public Recipe addRecipe(Recipe recipe) {
-        em.persist(recipe);
-        return recipe;
-    }
-    
-    @Override
     public List<Recipe> getAllRecipes() {
-        return em.createQuery("SELECT t FROM recipes t").getResultList();
+        return em.createNamedQuery("allRecipes").getResultList();
     }
-    
+
     @Override
-    public Recipe findRecipeById(Long recipeId) {
-        return em.find(Recipe.class, recipeId);
+    public int getAllRecipesCount() {
+        return this.getAllRecipes().size();
     }
-    
+
     @Override
-    public Recipe updateRecipe(Recipe recipe) {
-        return em.merge(recipe);
+    public int getAllLikes() {
+        List<Recipe> recipes = this.getAllRecipes();
+        int likes = 0;
+        
+        for(Recipe r: recipes) {
+            likes = likes + r.getLikes();
+        }
+        
+        return likes;
     }
-    
+
     @Override
-    public void removeRecipe(Recipe recipe) {
-        em.remove(recipe);
+    public int getAllDislikes() {
+        List<Recipe> recipes = this.getAllRecipes();
+        int dislikes = 0;
+        
+        for(Recipe r: recipes) {
+            dislikes = dislikes + r.getDislikes();
+        }
+        
+        return dislikes;
     }
 }

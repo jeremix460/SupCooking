@@ -7,13 +7,11 @@ import javax.ejb.Local;
 @Local
 public interface RecipeDao {
     
-    Recipe addRecipe(Recipe recipe);
-    
     List<Recipe> getAllRecipes();
     
-    Recipe findRecipeById(Long recipeId);
+    int getAllRecipesCount();
     
-    Recipe updateRecipe(Recipe recipe);
+    int getAllLikes();
     
-    void removeRecipe(Recipe findRecipeById);
+    int getAllDislikes();
 }

@@ -1,16 +1,14 @@
 package com.supinfo.supcooking.entities;
 
 import java.io.Serializable;
-import java.time.Duration;
-import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
@@ -19,12 +17,19 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name="recipes")
+@NamedQuery(name = "allRecipes", query = "SELECT r FROM Recipe r")
 public class Recipe implements Serializable {
     
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private Long id;
+    
+    @NotEmpty
+    @Column(name = "title")
+    private String title;
     
     @NotEmpty
     @Column(name = "description")
@@ -35,62 +40,110 @@ public class Recipe implements Serializable {
     private String picture;
     
     @NotEmpty
-    @Column(name = "preparationTime")
-    private Duration preparationTime;
+    @Column(name = "preparation_time")
+    private Long preparationTime;
     
     @NotEmpty
-    @Column(name = "cookingTime")
-    private Duration cookingTime;
+    @Column(name = "cooking_time")
+    private Long cookingTime;
     
     @NotEmpty
     @Column(name = "difficulty")
-    private short difficulty;
+    private int difficulty;
     
-    @Column(name = "likeMark")
-    private int like;
+    @Column(name = "likes", columnDefinition = "INT default 0")
+    private int likes;
     
-    @Column(name = "dislikeMark")
-    private int dislike;
-
-    public int getLike() {
-        return like;
-    }
-
-    public void setLike() {
-        this.like++;
-    }
-
-    public int getDislike() {
-        return dislike;
-    }
-
-    public void setDislike() {
-        this.dislike++;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
+    @Column(name = "dislikes", columnDefinition = "INT default 0")
+    private int dislikes;
     
     @OneToOne
-    @PrimaryKeyJoinColumn(name="category_id", referencedColumnName="ID")
+    @PrimaryKeyJoinColumn(name="category_id", referencedColumnName="id")
     private Category category;
     
     @OneToMany
     private List<Ingredient> ingredients;
     
     @ManyToOne
-    @PrimaryKeyJoinColumn(name="user_id", referencedColumnName="ID")
+    @PrimaryKeyJoinColumn(name="user_id", referencedColumnName="id")
     private User user;
-    
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
+
+    public Long getPreparationTime() {
+        return preparationTime;
+    }
+
+    public void setPreparationTime(Long preparationTime) {
+        this.preparationTime = preparationTime;
+    }
+
+    public Long getCookingTime() {
+        return cookingTime;
+    }
+
+    public void setCookingTime(Long cookingTime) {
+        this.cookingTime = cookingTime;
+    }
+
+    public int getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(int difficulty) {
+        this.difficulty = difficulty;
+    }
+
+    public int getLikes() {
+        return likes;
+    }
+
+    public void setLikes(int likes) {
+        this.likes = likes;
+    }
+
+    public int getDislikes() {
+        return dislikes;
+    }
+
+    public void setDislikes(int dislikes) {
+        this.dislikes = dislikes;
+    }
+
     public Category getCategory() {
         return category;
     }
-    
+
     public void setCategory(Category category) {
         this.category = category;
     }
@@ -99,60 +152,16 @@ public class Recipe implements Serializable {
         return ingredients;
     }
 
-    public void addIngredient(Ingredient ingredient) {
-        this.ingredients.add(ingredient);
+    public void setIngredients(List<Ingredient> ingredients) {
+        this.ingredients = ingredients;
     }
-    
-    public void removeIngredient(Ingredient ingredient) {
-        this.ingredients.remove(ingredient);
+
+    public User getUser() {
+        return user;
     }
-    
-    public String getDescription() {
-        return description;
-    }
-    
-    public void setDescription(String description) {
-        this.description = description;
-    }
-    
-    public String getPicture() {
-        return picture;
-    }
-    
-    public void setPicture(String picture) {
-        this.picture = picture;
-    }
-    
-    public Duration getPreparationTime() {
-        return preparationTime;
-    }
-    
-    public void setPreparationTime(Duration preparationTime) {
-        this.preparationTime = preparationTime;
-    }
-    
-    public Duration getCookingTime() {
-        return cookingTime;
-    }
-    
-    public void setCookingTime(Duration cookingTime) {
-        this.cookingTime = cookingTime;
-    }
-    
-    public short getDifficulty() {
-        return difficulty;
-    }
-    
-    public void setDifficulty(short difficulty) {
-        this.difficulty = difficulty;
-    }
-    
-    public Long getId() {
-        return id;
-    }
-    
-    public void setId(Long id) {
-        this.id = id;
+
+    public void setUser(User user) {
+        this.user = user;
     }
     
     @Override
@@ -174,19 +183,6 @@ public class Recipe implements Serializable {
     
     @Override
     public String toString() {
-        return "com.supinfo.supcooking.entity.Recipe[ id=" + id + " ]";
+        return "[" + id + "] " + title;
     }
-    
-    public int likeRecipe(){
-        
-        this.setLike();
-        return this.like;
-    }
-    
-    public int dislikeRecipe(){
-        
-        this.setDislike();
-        return this.dislike;
-    }
-    
 }
