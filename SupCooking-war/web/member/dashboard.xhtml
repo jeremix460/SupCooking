@@ -2,13 +2,17 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
-    template="templates/materialize-page.xhtml">
-                    
+    template="../templates/materialize-page.xhtml">
+        
     <ui:define name="title">
         <h:outputText value="Dashboard"/>
     </ui:define>
-        
+    
     <ui:define name="content">
-        <h:outputText value="Dashboard !" />
+        <div>
+            <p>
+                Hi <h:outputText value="#{userController.loggedInUser.username}" /> !
+            </p>
+        </div>
     </ui:define>
 </ui:composition>

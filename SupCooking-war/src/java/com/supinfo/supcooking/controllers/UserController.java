@@ -1,35 +1,35 @@
 package com.supinfo.supcooking.controllers;
 
 import com.supinfo.supcooking.entities.User;
-import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import org.hibernate.validator.constraints.NotEmpty;
-import com.supinfo.supcooking.services.interfaces.IUserService;
+import com.supinfo.supcooking.utils.SessionUtils;
+import java.io.Serializable;
+import javax.servlet.http.HttpSession;
 
 @ManagedBean
 @SessionScoped
-public class UserController {
-    
-    @EJB
-    private IUserService userService;
-    
-    @NotEmpty
+public class UserController implements Serializable{
     private String username;
-    
-    @NotEmpty
     private String password;
-    
-    private User loggedUser;
+    private User loggedInUser;
     
     public String login() {
-        System.out.println("Shall log in " + username + " with password " + password);
-        //loggedUser = userService.login(username, password);
+        //TODO: verify user in DB and use the result as the logged in user
+        loggedInUser = new User();
+        loggedInUser.setUsername(username);
+        loggedInUser.setPassword(password);
         
-        username = null;
-        password = null;
+        HttpSession ses = SessionUtils.getSession();
+        ses.setAttribute("username", loggedInUser);
         
-        return "dashboard";
+        return "/member/dashboard";
+    }
+    
+    public String logout() {
+        HttpSession session = SessionUtils.getSession();
+        session.invalidate();
+        return "/index";
     }
     
     public String getPassword() {
@@ -48,7 +48,7 @@ public class UserController {
         this.username = username;
     }
     
-    public User getLoggedUser() {
-        return loggedUser;
+    public User getLoggedInUser() {
+        return loggedInUser;
     }
 }
