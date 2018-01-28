@@ -46,7 +46,7 @@ public class RecipeService implements IRecipeService {
     }
 
     @Override
-    public Recipe createRecipe(String title, String description, String picture, Long preparationTime, Long cookingTime, int difficulty, int likes, int dislikes) {
+    public Recipe createRecipe(String title, String description, String picture, Long preparationTime, Long cookingTime, int difficulty, int likes, int dislikes, Category category) {
         Recipe recipe = new Recipe();
         recipe.setCookingTime(cookingTime);
         recipe.setDescription(description);
@@ -55,6 +55,8 @@ public class RecipeService implements IRecipeService {
         recipe.setLikes(likes);
         recipe.setPreparationTime(preparationTime);
         recipe.setTitle(title);
+        recipe.setPicture(picture);
+        recipe.setCategory(category);
         
         return recipeDao.createRecipe(recipe);
         
@@ -69,5 +71,11 @@ public class RecipeService implements IRecipeService {
     public Recipe setCategory(Recipe recipe, Category category) {
         return recipeDao.setCategory(recipe, category);
     }
-      
+
+    @Override
+    public Recipe setIngredients(Recipe recipe, List<Ingredient> ingredients) {
+        return recipeDao.setIngredients(recipe, ingredients);
+    }
+    
+    
 }

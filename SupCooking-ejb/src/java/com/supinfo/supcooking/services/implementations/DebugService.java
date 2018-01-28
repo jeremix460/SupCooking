@@ -54,15 +54,15 @@ public class DebugService implements IDebugService{
 //            userService.createUser(newUser);
 
             //Create a category
-            Category category = categoryService.createCategory(generateRandomString(8));
+//            Category category = categoryService.createCategory(generateRandomString(8));
 //
             //Create ingredients 
-            Ingredient ingredient_A = ingredientService.createIngredient(generateRandomString(8), ThreadLocalRandom.current().nextFloat());
-            Ingredient ingredient_B = ingredientService.createIngredient(generateRandomString(8), ThreadLocalRandom.current().nextFloat());
-            Ingredient ingredient_C = ingredientService.createIngredient(generateRandomString(8), ThreadLocalRandom.current().nextFloat());
-
-            //Create a recipe
-            Recipe recipe = recipeService.createRecipe(generateRandomString(30), generateRandomString(500), generateRandomString(20), ThreadLocalRandom.current().nextLong(500000) , ThreadLocalRandom.current().nextLong(200000), generateRandomInteger(6), generateRandomInteger(500), generateRandomInteger(500));
+//            Ingredient ingredient_A = ingredientService.createIngredient(generateRandomString(8), ThreadLocalRandom.current().nextFloat());
+//            Ingredient ingredient_B = ingredientService.createIngredient(generateRandomString(8), ThreadLocalRandom.current().nextFloat());
+//            Ingredient ingredient_C = ingredientService.createIngredient(generateRandomString(8), ThreadLocalRandom.current().nextFloat());
+//
+//            //Create a recipe
+//            Recipe recipe = recipeService.createRecipe(generateRandomString(30), generateRandomString(500), generateRandomString(20), ThreadLocalRandom.current().nextLong(500000) , ThreadLocalRandom.current().nextLong(200000), generateRandomInteger(6), generateRandomInteger(500), generateRandomInteger(500));
 //
 //            //Add the ingredients 
 //            recipeService.addIngredient(recipe, ingredient_A);

@@ -2,6 +2,7 @@ package com.supinfo.supcooking.entities;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,7 +15,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import org.hibernate.validator.constraints.NotEmpty;
+
 
 @Entity
 @Table(name="recipes")
@@ -58,7 +59,7 @@ public class Recipe implements Serializable {
     @Column(name = "dislikes", columnDefinition = "INT default 0")
     private int dislikes;
     
-    @OneToOne
+    @OneToOne(cascade=CascadeType.PERSIST)
     @PrimaryKeyJoinColumn(name="category_id", referencedColumnName="id")
     private Category category;
     

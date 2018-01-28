@@ -112,7 +112,13 @@ public class JpaRecipeDao implements RecipeDao {
         
         return recipe;
     }
-    
-    
-    
+
+    @Override
+    public Recipe setIngredients(Recipe recipe, List<Ingredient> Ingrediernts) {
+        
+        recipe.setIngredients(Ingrediernts);
+        em.merge(recipe);
+        return recipe;
+    }
+      
 }

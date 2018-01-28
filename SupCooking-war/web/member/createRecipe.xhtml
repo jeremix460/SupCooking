@@ -1,0 +1,45 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="../templates/materialize-page.xhtml">
+    
+    <ui:define name="title">
+        <h:outputText value="Create a recipe"/>
+    </ui:define>
+    
+    <ui:define name="content">
+        <h:form styleClass="container" enctype="multipart/form-data">
+            <h:outputLabel for="title" value="Title"/>
+            <h:inputText required="true" id="title" value="#{recipeCreationController.title}" />
+            
+            <h:outputLabel for="category" value="Category"/>
+            <h:inputText required="true" id="category" value="#{recipeCreationController.category}" />
+            
+            <h:outputLabel for="description" value="Description"/>
+            <h:inputText required="true" id="description" value="#{recipeCreationController.description}" />
+            
+            <h:outputLabel for="picture" value="Picture URL"/><br></br>
+            <h:inputText required="true" id="picture" value="#{recipeCreationController.picture}" /><br></br><br></br>
+            
+            <h:outputLabel for="preparationTime" value="Preparation Time"/>
+            <h:inputText required="true" id="preparationTime" value="#{recipeCreationController.preparationTime}" />
+            
+            <h:outputLabel for="cookingTime" value="Cooking Time"/>
+            <h:inputText required="true" id="cookingTime" value="#{recipeCreationController.cookingTime}" />
+            
+            <h:outputLabel for="difficulty" value="Difficulty"/>
+            <h:inputText required="true" id="difficulty" value="#{recipeCreationController.difficulty}" />
+            
+            <ui:repeat value="#{recipeCreationController.ingredients}" var="ingredient">            
+                <h:inputText value="#{recipeCreationController.ingredients[ingredient.designation]}" />
+            </ui:repeat>
+            <h:inputText value="#{recipeCreationController.ingredient}" />
+            
+            <h:commandButton value="Add" action="#{recipeCreationController.add}" />
+            
+            <h:commandButton value="Submit" action="#{recipeCreationController.createRecipe()}" styleClass="waves-effect waves-light btn"/>
+        
+        </h:form>
+    </ui:define>
+</ui:composition>

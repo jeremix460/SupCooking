@@ -26,4 +26,6 @@ public interface RecipeDao {
     Recipe addIngredient(Recipe recipe, Ingredient ingredient);
     
     Recipe setCategory(Recipe recipe, Category category);
+    
+    Recipe setIngredients(Recipe recipe, List<Ingredient> Ingrediernts);
 }
