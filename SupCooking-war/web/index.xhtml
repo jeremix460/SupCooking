@@ -41,32 +41,22 @@
         </nav>
         
         <div class="section container">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Recipe</th>
-                        <th>Description</th>
-                    </tr>
-                </thead>
-                
-                <tbody>
-                    <tr>
-                        <td>Eclair au chocolat</td>
-                        <td>Délicieux...</td>
-                        <td><h:link outcome="/recipe" value="Cook" styleClass="btn waves-effect waves-light" /></td>
-                    </tr>
-                    <tr>
-                        <td>Omelette du fromage</td>
-                        <td>Délicieux...</td>
-                        <td><h:link outcome="/recipe" value="Cook" styleClass="btn waves-effect waves-light" /></td>
-                    </tr>
-                    <tr>
-                        <td>Foie de canard</td>
-                        <td>Délicieux...</td>
-                        <td><h:link outcome="/recipe" value="Cook" styleClass="btn waves-effect waves-light" /></td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="row">
+                <ui:repeat value="#{recipeController.allRecipes}" var="recipe">
+                    <div class="col s12 m6 l4">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="https://source.unsplash.com/256x256/?cook"></img>
+                                <span class="card-title"><h:outputText value="#{recipe.title}" /></span>
+                                <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">restaurant</i></a>
+                            </div>
+                            <div class="card-content">
+                                <p><h:outputText value="#{recipe.description}" /></p>
+                            </div>
+                        </div>
+                    </div>
+                </ui:repeat>
+            </div>
             
             <ul class="pagination center-align">
                 <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
