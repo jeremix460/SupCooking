@@ -13,7 +13,9 @@ public class CategoryService implements ICategoryService {
     private CategoryDao categoryDao;
     
     @Override
-    public Category createCategory(Category category) {
+    public Category createCategory(String designation) {
+        Category category = new Category();
+        category.setDesignation(designation);
         return categoryDao.addCategory(category);
     }
 
@@ -21,5 +23,9 @@ public class CategoryService implements ICategoryService {
     public void deleteCategory(Category category) {
         categoryDao.removeCategory(category);
     }
-        
+
+    @Override
+    public Category getCategory(Long id) {
+        return categoryDao.findCategoryById(id);
+    }   
 }

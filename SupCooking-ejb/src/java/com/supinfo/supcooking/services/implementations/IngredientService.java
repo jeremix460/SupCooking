@@ -26,6 +26,11 @@ public class IngredientService implements IIngredientService {
     public void deleteIngredient(Ingredient ingredient) {
         ingredientDao.removeIngredient(ingredient);
     }
+
+    @Override
+    public Ingredient getIngredient(Long id) {
+        return ingredientDao.findIngredientById(id);
+    }
     
     
 }

@@ -6,7 +6,9 @@ import javax.ejb.Remote;
 @Remote
 public interface ICategoryService {
     
-    Category createCategory(Category category);
+    Category createCategory(String designation);
     
     void deleteCategory(Category category);
+    
+    Category getCategory(Long id);
 }

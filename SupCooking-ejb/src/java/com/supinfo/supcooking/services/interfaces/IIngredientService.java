@@ -9,4 +9,6 @@ public interface IIngredientService {
     Ingredient createIngredient(String designation, float quantity);
     
     void deleteIngredient(Ingredient ingredient);
+    
+    Ingredient getIngredient(Long id);
 }

@@ -29,6 +29,18 @@ public class RecipeService implements IRecipeService {
         
         return recipeDao.addRecipe(recipe);
     }
+    
+    public Recipe modifyRecipe(Recipe recipe, String description, String picture, Duration preparationTime, Duration cookingTime, short difficulty, Category category, User user) {
+        
+        recipe.setDescription(description);
+        recipe.setPicture(picture);
+        recipe.setCookingTime(cookingTime);
+        recipe.setPreparationTime(preparationTime);
+        recipe.setDifficulty(difficulty);
+        recipe.setCategory(category);
+        
+        return recipeDao.updateRecipe(recipe);
+    }
 
     @Override
     public void deleteRecipe(Recipe recipe) {

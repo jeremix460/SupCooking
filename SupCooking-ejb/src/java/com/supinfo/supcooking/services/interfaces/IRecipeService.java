@@ -12,6 +12,8 @@ public interface IRecipeService {
     
     Recipe createRecipe(String description, String picture, Duration preparationTime, Duration cookingTime, short difficulty,Category category, User user);
     
+    Recipe modifyRecipe(Recipe recipe, String description, String picture, Duration preparationTime, Duration cookingTime, short difficulty,Category category, User user);
+    
     void deleteRecipe(Recipe recipe);
     
     Recipe updateRecipe(Recipe recipe);
