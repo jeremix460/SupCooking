@@ -1,5 +1,6 @@
 package com.supinfo.supcooking.filters;
 
+import com.supinfo.supcooking.utils.SessionUtils;
 import java.io.IOException;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -31,7 +32,7 @@ public class AuthorizationFilter implements Filter{
             HttpSession ses = req.getSession(false);
             String reqURI = req.getRequestURI();
             
-            if((ses != null && ses.getAttribute("username") != null)
+            if((ses != null && ses.getAttribute(SessionUtils.ATTRIBUTE_USER) != null)
                     || !reqURI.contains("/member")
                     || reqURI.contains("javax.faces.resource")) {
                 chain.doFilter(req, res);
