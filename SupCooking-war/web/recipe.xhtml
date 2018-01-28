@@ -1,0 +1,54 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="templates/materialize-page.xhtml"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+                    
+    <ui:define name="title">
+        <h:outputText value="Recipe details"/>
+    </ui:define>
+    
+    <ui:define name="content">
+        <f:metadata>
+            <f:viewParam name="id" value="#{recipeDetailsController.id}" />
+        </f:metadata>
+            
+        <div class="container">
+            <div class="card">
+                <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="https://source.unsplash.com/1024x1024/?food"></img>
+                </div>
+                <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">#{recipeDetailsController.recipe.title}<i class="material-icons right">more_vert</i></span>
+                    <p>
+                        <h:form>
+                            <h:commandLink action="#{recipeDetailsController.like()}" styleClass="btn-floating btn-large waves-effect waves-light green">
+                                <f:param name="id" value="#{recipe.id}" />
+                                <i class="material-icons">mood</i>
+                            </h:commandLink>
+                            <h:commandLink action="#{recipeDetailsController.dislike()}" styleClass="btn-floating btn-large waves-effect waves-light red">
+                                <f:param name="id" value="#{recipe.id}" />
+                                <i class="material-icons">mood_bad</i>
+                            </h:commandLink>
+                        </h:form>
+                    </p>
+                </div>
+                <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4">#{recipeDetailsController.recipe.title}<i class="material-icons right">close</i></span>
+                    <p>#{recipeDetailsController.recipe.description}</p>
+                    <h5>Difficulty</h5>
+                    <p>
+                        <c:forEach begin="0" end="#{recipeDetailsController.recipe.difficulty}" var="difficulty" varStatus="d">
+                            <i class="material-icons red-text">whatshot</i>
+                        </c:forEach>
+                    </p>
+                    <h5>Ratio like/dislikes</h5>
+                    <div class="progress">
+                        <div class="determinate" style="width: #{recipeDetailsController.likePercentage}%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>

@@ -7,6 +7,7 @@ import com.supinfo.supcooking.entities.Ingredient;
 import com.supinfo.supcooking.entities.Recipe;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -27,6 +28,17 @@ public class JpaRecipeDao implements RecipeDao {
     @Override
     public int getAllRecipesCount() {
         return this.getAllRecipes().size();
+    }
+    
+    @Override
+    public Recipe findRecipesById(Long id) {
+        try {
+            return (Recipe) em.createQuery("SELECT r FROM Recipe r WHERE r.id = :id")
+                    .setParameter("id", id)
+                    .getSingleResult();
+        } catch(NoResultException e) {
+            return null; // recipe not found
+        }
     }
     
     private TypedQuery<Recipe> findRecipesByKeywords(String keywords) {
@@ -90,13 +102,37 @@ public class JpaRecipeDao implements RecipeDao {
         
         return dislikes;
     }
-
+    
+    @Override
+    public Recipe likeRecipeById(Long id) {
+        Recipe r = findRecipesById(id);
+        if(r != null) {
+            r.setLikes(r.getLikes() + 1);
+            em.merge(r);
+            return r;
+        } else {
+            return null;
+        }
+    }
+    
+    @Override
+    public Recipe dislikeRecipeById(Long id) {
+        Recipe r = findRecipesById(id);
+        if(r != null) {
+            r.setDislikes(r.getDislikes()+ 1);
+            em.merge(r);
+            return r;
+        } else {
+            return null;
+        }
+    }
+    
     @Override
     public Recipe createRecipe(Recipe recipe) {
         em.persist(recipe);
         return recipe;
     }
-
+    
     @Override
     public Recipe addIngredient(Recipe recipe, Ingredient ingredient) {
         recipe.addIngredient(ingredient);
@@ -104,7 +140,7 @@ public class JpaRecipeDao implements RecipeDao {
         
         return recipe;
     }
-
+    
     @Override
     public Recipe setCategory(Recipe recipe, Category category) {
         recipe.setCategory(category);
@@ -112,7 +148,4 @@ public class JpaRecipeDao implements RecipeDao {
         
         return recipe;
     }
-    
-    
-    
 }

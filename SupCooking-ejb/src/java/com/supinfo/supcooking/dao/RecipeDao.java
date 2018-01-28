@@ -13,6 +13,8 @@ public interface RecipeDao {
     
     int getAllRecipesCount();
     
+    Recipe findRecipesById(Long id);
+    
     List<Recipe> findRecipesByKeywords(String keywords, int page);
     
     int findRecipesByKeywordsPagesCount(String keywords);
@@ -20,6 +22,10 @@ public interface RecipeDao {
     int getAllLikes();
     
     int getAllDislikes();
+    
+    Recipe likeRecipeById(Long id);
+    
+    Recipe dislikeRecipeById(Long id);
     
     Recipe createRecipe(Recipe recipe);
     

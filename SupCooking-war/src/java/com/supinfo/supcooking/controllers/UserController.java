@@ -26,20 +26,20 @@ public class UserController implements Serializable{
             HttpSession ses = SessionUtils.getSession();
             ses.setAttribute(SessionUtils.ATTRIBUTE_USER, loggedInUser);
             
-            return "/member/dashboard";
+            return "/member/dashboard?faces-redirect=true";
         } else {
             FacesContext.getCurrentInstance()
                     .addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,
 							"Incorrect Username and Passowrd",
 							"Please enter correct username and Password"));
-            return "/login";
+            return "/login?faces-redirect=true";
         }
     }
     
     public String logout() {
         HttpSession session = SessionUtils.getSession();
         session.invalidate();
-        return "/index";
+        return "/index?faces-redirect=true";
     }
     
     public String getUsername() {

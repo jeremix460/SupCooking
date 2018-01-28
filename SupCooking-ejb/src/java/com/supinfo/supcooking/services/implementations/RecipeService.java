@@ -26,6 +26,11 @@ public class RecipeService implements IRecipeService {
     }
 
     @Override
+    public Recipe findRecipesById(Long id) {
+        return recipeDao.findRecipesById(id);
+    }
+
+    @Override
     public List<Recipe> findRecipesByKeywords(String keywords, int page) {
         return recipeDao.findRecipesByKeywords(keywords, page);
     }
@@ -46,6 +51,16 @@ public class RecipeService implements IRecipeService {
     }
 
     @Override
+    public Recipe likeRecipeById(Long id) {
+        return recipeDao.likeRecipeById(id);
+    }
+
+    @Override
+    public Recipe dislikeRecipeById(Long id) {
+        return recipeDao.dislikeRecipeById(id);
+    }
+
+    @Override
     public Recipe createRecipe(String title, String description, String picture, Long preparationTime, Long cookingTime, int difficulty, int likes, int dislikes) {
         Recipe recipe = new Recipe();
         recipe.setCookingTime(cookingTime);
@@ -57,7 +72,6 @@ public class RecipeService implements IRecipeService {
         recipe.setTitle(title);
         
         return recipeDao.createRecipe(recipe);
-        
     }
 
     @Override
@@ -69,5 +83,4 @@ public class RecipeService implements IRecipeService {
     public Recipe setCategory(Recipe recipe, Category category) {
         return recipeDao.setCategory(recipe, category);
     }
-      
 }
