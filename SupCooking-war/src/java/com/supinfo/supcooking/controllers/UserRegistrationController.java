@@ -77,6 +77,6 @@ public class UserRegistrationController implements Serializable{
         
         userService.createUser(newUser);
         
-        return "/login";
+        return "/login?faces-redirect=true";
     }
 }
